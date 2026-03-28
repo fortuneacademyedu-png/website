@@ -30,7 +30,7 @@ export function SiteFooter() {
           <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-700">Contact</h4>
           <div className="mt-3 space-y-2 text-sm text-slate-600">
             <p>Naren Choudary (Managing Director)</p>
-            <p>91 98862 34079</p>
+            <p>91 98862 34079, 9731250001</p>
             <p>info@fortuneacademyedu.com</p>
             <div className="pt-2">
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Follow Us</p>

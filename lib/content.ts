@@ -22,7 +22,7 @@ export type SiteContent = {
   };
   courses: Array<{ title: string }>;
   services: Array<{ title: string }>;
-  colleges: Array<{ name: string; logo: string; hasLogo: boolean }>;
+  colleges: Array<{ name: string; logo: string; hasLogo: boolean; intro: string }>;
   whyChooseUs: string[];
   process: string[];
   contact: {
@@ -92,6 +92,45 @@ function makeLogoPath(name: string) {
   return `/images/${slug}.svg`;
 }
 
+function makeCollegeIntro(name: string) {
+  const introMap: Record<string, string> = {
+    "RV College of Engineering":
+      "A top-tier engineering institution in Bangalore known for strong placements, rigorous academics, and industry-focused programs.",
+    "BMS College of Engineering":
+      "One of Karnataka’s oldest and most trusted engineering colleges with solid academics, active campus life, and consistent outcomes.",
+    "MS Ramaiah Institute of Technology":
+      "A highly reputed autonomous institute with strong engineering branches, good industry exposure, and excellent urban campus access.",
+    "New Horizon College of Engineering":
+      "A popular private engineering college recognized for practical learning, student support, and placement-oriented training pathways.",
+    "Akash Institute":
+      "A growing institution offering career-focused professional education with emphasis on employability and hands-on skill development.",
+    "Acharya Institute":
+      "A well-known Bangalore campus offering multidisciplinary programs and modern infrastructure with broad student support systems.",
+    "Atria Institute of Technology":
+      "A centrally located engineering institute focused on technical learning, project-based exposure, and industry-ready skill building.",
+    "Vyasa Institute":
+      "A student-friendly institute in Bangalore offering professional programs with practical academic guidance and supportive faculty.",
+    "CMR Institute of Technology":
+      "An established engineering college with strong academic processes, innovation culture, and competitive placement opportunities.",
+    "Dayananda Sagar Academy of Technology (Kanakapura Road)":
+      "A quality engineering campus under the Dayananda Sagar group with modern labs and strong technical program delivery.",
+    "Dayananda Sagar College of Engineering (Kumaraswamy Layout)":
+      "A reputed legacy engineering college in Bangalore known for academic depth, established departments, and strong industry connect.",
+    "Presidency University":
+      "A modern private university with multidisciplinary courses, contemporary infrastructure, and career-oriented learning models.",
+    "Reva University":
+      "A leading Bangalore university offering broad UG and PG options, advanced facilities, and strong placement support.",
+    "AMC Engineering College":
+      "A recognized engineering college offering accessible technical education with practical focus and steady academic progression.",
+    "Nitte Meenakshi Institute of Technology":
+      "A reputed autonomous engineering institution known for disciplined academics, research culture, and strong placement performance.",
+    "SRM Vishveshwarya Institute of Technology":
+      "An engineering college focused on foundational technical education, skill enhancement, and student career readiness."
+  };
+
+  return introMap[name] ?? "A trusted institution in Bangalore with quality academics and strong support for professional career pathways.";
+}
+
 async function fileExists(relativePath: string) {
   const cleanedPath = relativePath.replace(/^\/+/, "");
   const absolutePath = path.join(process.cwd(), "public", cleanedPath);
@@ -128,7 +167,8 @@ export async function getSiteContent(): Promise<SiteContent> {
   const colleges = await Promise.all(
     collegeNames.map(async (item) => ({
       ...item,
-      hasLogo: await fileExists(item.logo)
+      hasLogo: await fileExists(item.logo),
+      intro: makeCollegeIntro(item.name)
     }))
   );
 

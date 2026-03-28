@@ -23,7 +23,10 @@ export default async function CollegesPage() {
 
       <section className="w-full px-4 pb-8 pt-14 sm:px-6 lg:px-10">
         <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">Top Colleges</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">Browse trusted institutions supported by Fortune Academy for admissions and counseling guidance.</p>
+        <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-600 sm:text-base">
+          Explore top colleges in Bangalore with brief profile insights to help you compare reputation, campus experience, and admission fit.
+          Our team of best college counsellors supports you in shortlisting the right institution based on your goals, budget, and preferred program.
+        </p>
       </section>
 
       <section className="w-full px-4 pb-16 sm:px-6 lg:px-10">
@@ -37,7 +40,8 @@ export default async function CollegesPage() {
                   <span className="absolute inset-0 flex items-center justify-center text-xl font-semibold text-slate-500">{initials(college.name)}</span>
                 )}
               </div>
-              <p className="mt-4 text-sm font-semibold leading-6 text-slate-800">{college.name}</p>
+              <p className="mt-4 text-base font-semibold leading-6 text-slate-900">{college.name}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{college.intro}</p>
             </article>
           ))}
         </div>

@@ -27,7 +27,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 px-4 pb-3 pt-3 sm:px-6 lg:px-10">
       <div className="rounded-2xl border border-slate-800/20 bg-[linear-gradient(90deg,#0f172a_0%,#1e293b_55%,#0b1324_100%)] px-4 py-2 text-xs text-white shadow-xl shadow-slate-900/20">
         <div className="flex flex-col items-center justify-between gap-2 sm:flex-row">
-          <p className="text-center font-medium tracking-wide text-slate-100 sm:text-left">Admissions Helpline: 91 98862 34079</p>
+          <p className="text-center font-medium tracking-wide text-slate-100 sm:text-left">Admissions Helpline: 91 98862 34079, 9731250001</p>
           <Link
             href="https://wa.me/919886234079"
             target="_blank"
