@@ -11,7 +11,21 @@ const links = [
   { label: "Courses", href: "/courses" },
   { label: "Colleges", href: "/colleges" },
   { label: "Services", href: "/services" },
+  { label: "Loan Assistance", href: "/loan-assistance" },
   { label: "Contact", href: "/contact" }
+];
+
+const landingLinks = [
+  { label: "RVCE Admission 2026", href: "/rvce-engineering-admission-2026" },
+  { label: "Christ Admission 2026", href: "/christ-admission-guidance-2026" },
+  { label: "Alliance Admission 2026", href: "/alliance-admission-guidance-2026" },
+  { label: "Jain Admission 2026", href: "/jain-admission-guidance-2026" },
+  { label: "MBA Guidance 2026", href: "/mba-admission-guidance-2026" },
+  { label: "NRI Quota Engineering", href: "/nri-quota-engineering-admissions-2026" },
+  { label: "Education Consultant Jayanagar", href: "/education-consultant-jayanagar-bangalore" },
+  { label: "Counselling Registration", href: "/counselling-registration" },
+  { label: "Loan Assistance", href: "/loan-assistance" },
+  { label: "Channel Partners", href: "/channel-partners" }
 ];
 
 export function SiteHeader() {
@@ -88,7 +102,7 @@ export function SiteHeader() {
         </div>
 
         {menuOpen ? (
-          <div className="mt-3 space-y-2 rounded-2xl border border-slate-200 bg-white p-3 lg:hidden">
+          <div className="mt-3 max-h-[70vh] space-y-2 overflow-y-auto rounded-2xl border border-slate-200 bg-white p-3 lg:hidden">
             {links.map((link) => (
               <Link
                 key={`mobile-${link.href}`}
@@ -108,9 +122,44 @@ export function SiteHeader() {
             >
               Book Free Counseling
             </Link>
+
+            <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Popular Admission Pages</p>
+              <div className="mt-2 grid gap-2">
+                {landingLinks.map((link) => (
+                  <Link
+                    key={`mobile-seo-${link.href}`}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block rounded-lg border px-3 py-2 text-sm font-semibold transition ${
+                      pathname === link.href ? "border-slate-900 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         ) : null}
       </nav>
+
+      <div className="mt-2 hidden rounded-2xl border border-slate-200/70 bg-white/80 px-3 py-2 shadow-lg shadow-slate-200/40 backdrop-blur-xl sm:px-4 lg:block">
+        <div className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Popular Admission Pages</div>
+        <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {landingLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-semibold transition sm:text-sm ${
+                pathname === link.href ? "border-slate-900 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
     </header>
   );
 }
