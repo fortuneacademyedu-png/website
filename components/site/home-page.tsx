@@ -259,16 +259,22 @@ export function HomePageView({ content }: Props) {
 
           <div className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {content.colleges.map((college) => (
-              <article key={college.name} className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-200/40">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-slate-100">
-                  {college.hasLogo ? (
-                    <Image src={college.logo} alt={college.name} fill className="object-cover" sizes="(max-width: 1280px) 50vw, 25vw" />
-                  ) : (
-                    <span className="absolute inset-0 flex items-center justify-center text-xl font-semibold text-slate-500">{initials(college.name)}</span>
-                  )}
-                </div>
-                <p className="mt-4 text-sm font-semibold leading-6 text-slate-800">{college.name}</p>
-              </article>
+              <Link
+                key={college.name}
+                href="/contact"
+                className="block rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-200/40 transition hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                <article>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-slate-100">
+                    {college.hasLogo ? (
+                      <Image src={college.logo} alt={college.name} fill className="object-cover" sizes="(max-width: 1280px) 50vw, 25vw" />
+                    ) : (
+                      <span className="absolute inset-0 flex items-center justify-center text-xl font-semibold text-slate-500">{initials(college.name)}</span>
+                    )}
+                  </div>
+                  <p className="mt-4 text-sm font-semibold leading-6 text-slate-800">{college.name}</p>
+                </article>
+              </Link>
             ))}
           </div>
         </motion.div>
