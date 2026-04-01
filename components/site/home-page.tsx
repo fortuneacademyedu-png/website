@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { SiteContent } from "@/lib/content";
 import { ContactForm } from "@/components/site/contact-form";
 import { SiteFooter } from "@/components/site/footer";
@@ -96,14 +96,70 @@ function initials(name: string) {
 export function HomePageView({ content }: Props) {
   const [activeSlide, setActiveSlide] = useState("03");
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
+  const shortsIframeRef = useRef<HTMLIFrameElement | null>(null);
+  const shortsPlayerRef = useRef<any>(null);
+  const leadModalTriggeredRef = useRef(false);
   const activeGuidance = guidanceDetails[activeSlide];
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const openLeadModalOnce = () => {
+      if (leadModalTriggeredRef.current) {
+        return;
+      }
+      leadModalTriggeredRef.current = true;
       setIsLeadModalOpen(true);
-    }, 10000);
+    };
 
-    return () => clearTimeout(timer);
+    const handleScroll = () => {
+      if (window.scrollY > 260) {
+        openLeadModalOnce();
+      }
+    };
+
+    const setupYouTubePlayer = () => {
+      const yt = (window as any).YT;
+      if (!yt?.Player || !shortsIframeRef.current || shortsPlayerRef.current) {
+        return;
+      }
+
+      shortsPlayerRef.current = new yt.Player(shortsIframeRef.current, {
+        events: {
+          onStateChange: (event: any) => {
+            if (event.data === yt.PlayerState.ENDED) {
+              openLeadModalOnce();
+            }
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    if ((window as any).YT?.Player) {
+      setupYouTubePlayer();
+    } else {
+      const existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+      const previousReady = (window as any).onYouTubeIframeAPIReady;
+      (window as any).onYouTubeIframeAPIReady = () => {
+        if (typeof previousReady === "function") {
+          previousReady();
+        }
+        setupYouTubePlayer();
+      };
+
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(script);
+      }
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (shortsPlayerRef.current?.destroy) {
+        shortsPlayerRef.current.destroy();
+      }
+    };
   }, []);
 
   return (
@@ -174,22 +230,14 @@ export function HomePageView({ content }: Props) {
             <motion.div {...riseIn} className="order-1 self-start lg:order-2">
               <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-300/30 lg:max-w-[360px]">
                 <iframe
+                  ref={shortsIframeRef}
+                  id="hero-shorts-player"
                   title="Fortune Academy YouTube Short"
-                  src="https://www.youtube.com/embed/DoZkTzKDJuc?autoplay=1&mute=1&loop=1&playlist=DoZkTzKDJuc&controls=1&modestbranding=1&rel=0"
+                  src="https://www.youtube.com/embed/v0QuZY6ECcQ?autoplay=1&mute=1&loop=1&playlist=v0QuZY6ECcQ&controls=1&modestbranding=1&rel=0&enablejsapi=1&playsinline=1"
                   className="h-full w-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
-              </div>
-              <div className="mt-3 text-center">
-                <Link
-                  href="https://www.youtube.com/shorts/DoZkTzKDJuc"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm font-semibold text-red-600 hover:text-red-500"
-                >
-                  Open Shorts on YouTube
-                </Link>
               </div>
             </motion.div>
           </div>
