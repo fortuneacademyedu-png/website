@@ -280,7 +280,7 @@ export const standalonePages: Record<string, StandalonePage> = {
         points: [
           "Naren Choudary (Managing Director)",
           "Phone: 91 98862 34079",
-          "Email: info@fortuneacademyedu.com",
+          "Email: fortuneacademyedu@gmail.com",
           "Address: #4 Hightech SLV 5B, 5th Floor, Banday Colony, Geddalahalli, Aramane Nagar, Bangalore 560094"
         ]
       }
@@ -336,9 +336,9 @@ export const standalonePages: Record<string, StandalonePage> = {
     ctaLabel: "Become a Partner",
     ctaHref: "/contact"
   },
-  "/education-consultant-jayanagar-bangalore": {
-    title: "Education Consultant Jayanagar Bangalore",
-    intro: "Localized support for students and families in and around Jayanagar and greater Bangalore.",
+  "/education-consultant-sanjay-nagar-bangalore": {
+    title: "Education Consultant Sanjay Nagar Bangalore",
+    intro: "Localized support for students and families in and around Sanjay Nagar and greater Bangalore.",
     blocks: [
       {
         heading: "Local Support",
@@ -352,8 +352,8 @@ export const standalonePages: Record<string, StandalonePage> = {
     ctaLabel: "Connect With Advisor",
     ctaHref: "/contact"
   },
-  "/alliance-admission-guidance-2026": {
-    title: "Alliance Admission Guidance 2026",
+  "/ramaiah-admission-guidance-2026": {
+    title: "Ramaiah Admission Guidance 2026",
     intro: "Focused guidance for 2026 admissions with profile-based roadmap planning.",
     blocks: [
       {
@@ -385,7 +385,7 @@ export const standalonePages: Record<string, StandalonePage> = {
     ctaHref: "/contact"
   },
   "/jain-admission-guidance-2026": {
-    title: "Jain Admission Guidance 2026",
+    title: "BMS CE Admission Guidance 2026",
     intro: "2026 intake support for Jain admission pathways.",
     blocks: [
       {
@@ -401,7 +401,7 @@ export const standalonePages: Record<string, StandalonePage> = {
     ctaHref: "/contact"
   },
   "/mba-admission-guidance-2026": {
-    title: "MBA Admission Guidance 2026",
+    title: "DS IT Admission Guidance 2026",
     intro: "Strategic MBA admission planning across top colleges and specializations.",
     blocks: [
       {
@@ -417,8 +417,8 @@ export const standalonePages: Record<string, StandalonePage> = {
     ctaHref: "/contact"
   },
   "/nri-quota-engineering-admissions-2026": {
-    title: "NRI Quota Engineering Admissions 2026",
-    intro: "Clear guidance for NRI quota engineering admissions in 2026.",
+    title: "NRI Quota MBBS Admissions 2026",
+    intro: "Clear guidance for NRI quota MBBS admissions in 2026.",
     blocks: [
       {
         heading: "NRI Admission Support",
@@ -482,7 +482,7 @@ export const standalonePages: Record<string, StandalonePage> = {
         points: [
           "You may request correction of inaccurate information shared with us.",
           "You may request deletion of personal data, subject to legal and operational obligations.",
-          "For privacy requests, contact us at info@fortuneacademyedu.com."
+          "For privacy requests, contact us at fortuneacademyedu@gmail.com."
         ]
       }
     ],

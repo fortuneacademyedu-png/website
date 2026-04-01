@@ -171,9 +171,25 @@ export function HomePageView({ content }: Props) {
               </div>
             </motion.div>
 
-            <motion.div {...riseIn} className="self-start overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50">
-              <div className="relative aspect-[4/3] w-full sm:aspect-[5/4]">
-                <Image src="/images/ramaiya.png" alt="MS Ramaiah Institute of Technology" fill className="object-cover" sizes="(max-width: 1024px) 90vw, 35vw" />
+            <motion.div {...riseIn} className="self-start">
+              <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-300/30 lg:max-w-[360px]">
+                <iframe
+                  title="Fortune Academy YouTube Short"
+                  src="https://www.youtube.com/embed/DoZkTzKDJuc?autoplay=1&mute=1&loop=1&playlist=DoZkTzKDJuc&controls=1&modestbranding=1&rel=0"
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <div className="mt-3 text-center">
+                <Link
+                  href="https://www.youtube.com/shorts/DoZkTzKDJuc"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-semibold text-red-600 hover:text-red-500"
+                >
+                  Open Shorts on YouTube
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -223,11 +239,11 @@ export function HomePageView({ content }: Props) {
                   WhatsApp Expert
                 </Link>
                 <Link
-                  href="tel:+919606033113"
+                  href="tel:+919886234079"
                   className="inline-flex items-center gap-2 rounded-full border border-indigo-300 bg-[linear-gradient(120deg,#eef2ff_0%,#e0e7ff_100%)] px-4 py-2 text-sm font-semibold text-indigo-900 shadow-lg shadow-indigo-200/50 transition hover:brightness-105"
                 >
                   <span aria-hidden="true">📞</span>
-                  Call +91 96060 33113
+                  Call +91 98862 34079
                 </Link>
               </div>
             </div>

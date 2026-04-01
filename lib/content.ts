@@ -71,14 +71,17 @@ function makeLogoPath(name: string) {
     "Acharya Institute": "/images/acharya.PNG",
     "Atria Institute of Technology": "/images/atria.png",
     "Vyasa Institute": "/images/vyasa.png",
+    "S-Vyasa University": "/images/vyasa.png",
     "CMR Institute of Technology": "/images/CMR-University-CMRU-Bangalore.jpg",
     "Dayananda Sagar Academy of Technology (Kanakapura Road)": "/images/dayananad sagar kanakapura.png",
     "Dayananda Sagar College of Engineering (Kumaraswamy Layout)": "/images/dayanand sagar kumar swamy layout.png",
     "Presidency University": "/images/Presidency.png",
     "Reva University": "/images/reva.png",
-    "AMC Engineering College": "/images/AMC.png",
+    "AMC Engineering College": "/images/BNMIT.png",
+    BNMIT: "/images/BNMIT.png",
     "Nitte Meenakshi Institute of Technology": "/images/nitte menakshi.png",
-    "SRM Vishveshwarya Institute of Technology": "/images/vishveshwara clg.png"
+    "SRM Vishveshwarya Institute of Technology": "/images/vishveshwara clg.png",
+    "Sir M Visvesvaraya Institute of Technology": "/images/vishveshwara clg.png"
   };
 
   if (explicitLogoMap[name]) {
@@ -90,6 +93,15 @@ function makeLogoPath(name: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
   return `/images/${slug}.svg`;
+}
+
+function normalizeCollegeName(name: string) {
+  const nameMap: Record<string, string> = {
+    "AMC Engineering College": "BNMIT",
+    "SRM Vishveshwarya Institute of Technology": "Sir M Visvesvaraya Institute of Technology",
+    "Vyasa Institute": "S-Vyasa University"
+  };
+  return nameMap[name] ?? name;
 }
 
 function makeCollegeIntro(name: string) {
@@ -110,6 +122,8 @@ function makeCollegeIntro(name: string) {
       "A centrally located engineering institute focused on technical learning, project-based exposure, and industry-ready skill building.",
     "Vyasa Institute":
       "A student-friendly institute in Bangalore offering professional programs with practical academic guidance and supportive faculty.",
+    "S-Vyasa University":
+      "A student-friendly institute in Bangalore offering professional programs with practical academic guidance and supportive faculty.",
     "CMR Institute of Technology":
       "An established engineering college with strong academic processes, innovation culture, and competitive placement opportunities.",
     "Dayananda Sagar Academy of Technology (Kanakapura Road)":
@@ -122,9 +136,13 @@ function makeCollegeIntro(name: string) {
       "A leading Bangalore university offering broad UG and PG options, advanced facilities, and strong placement support.",
     "AMC Engineering College":
       "A recognized engineering college offering accessible technical education with practical focus and steady academic progression.",
+    BNMIT:
+      "A recognized engineering college offering accessible technical education with practical focus and steady academic progression.",
     "Nitte Meenakshi Institute of Technology":
       "A reputed autonomous engineering institution known for disciplined academics, research culture, and strong placement performance.",
     "SRM Vishveshwarya Institute of Technology":
+      "An engineering college focused on foundational technical education, skill enhancement, and student career readiness.",
+    "Sir M Visvesvaraya Institute of Technology":
       "An engineering college focused on foundational technical education, skill enhancement, and student career readiness."
   };
 
@@ -157,13 +175,16 @@ export async function getSiteContent(): Promise<SiteContent> {
       return [key.trim().toLowerCase(), rest.join(":").trim()];
     })
   );
-  const phoneRaw = contactDetails["phone"] ?? "";
-  const whatsappDigits = phoneRaw.replace(/\D/g, "").slice(0, 12);
+  const primaryPhone = "91 98862 34079";
+  const whatsappDigits = "919886234079";
 
   const collegesSection = sectionSlice(source, "Colleges (display prominently as trust section/grid):", "Style:");
   const collegeNames = bulletLines(collegesSection)
     .filter((line) => !line.toLowerCase().includes("images will be"))
-    .map((name) => ({ name, logo: makeLogoPath(name) }));
+    .map((name) => {
+      const normalizedName = normalizeCollegeName(name);
+      return { name: normalizedName, logo: makeLogoPath(normalizedName) };
+    });
   const colleges = await Promise.all(
     collegeNames.map(async (item) => ({
       ...item,
@@ -232,8 +253,8 @@ export async function getSiteContent(): Promise<SiteContent> {
     process,
     contact: {
       heading: contactHeading,
-      phone: phoneRaw,
-      email: "info@fortuneacademyedu.com",
+      phone: primaryPhone,
+      email: "fortuneacademyedu@gmail.com",
       person: contactDetails["name"] ?? "",
       address: contactDetails["address"] ?? "",
       whatsapp: `https://wa.me/${whatsappDigits}`

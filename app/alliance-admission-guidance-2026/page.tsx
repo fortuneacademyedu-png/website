@@ -1,9 +1,5 @@
-import { notFound } from "next/navigation";
-import { StandalonePageView } from "@/components/site/standalone-page-view";
-import { getStandalonePage } from "@/lib/standalone-pages";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  const page = getStandalonePage("/alliance-admission-guidance-2026");
-  if (!page) notFound();
-  return <StandalonePageView page={page} />;
+  redirect("/ramaiah-admission-guidance-2026");
 }

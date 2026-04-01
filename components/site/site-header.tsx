@@ -18,11 +18,11 @@ const links = [
 const landingLinks = [
   { label: "RVCE Admission 2026", href: "/rvce-engineering-admission-2026" },
   { label: "Christ Admission 2026", href: "/christ-admission-guidance-2026" },
-  { label: "Alliance Admission 2026", href: "/alliance-admission-guidance-2026" },
-  { label: "Jain Admission 2026", href: "/jain-admission-guidance-2026" },
-  { label: "MBA Guidance 2026", href: "/mba-admission-guidance-2026" },
-  { label: "NRI Quota Engineering", href: "/nri-quota-engineering-admissions-2026" },
-  { label: "Education Consultant Jayanagar", href: "/education-consultant-jayanagar-bangalore" },
+  { label: "Ramaiah Admission 2026", href: "/ramaiah-admission-guidance-2026" },
+  { label: "BMS CE Admission 2026", href: "/jain-admission-guidance-2026" },
+  { label: "DS IT Admission 2026", href: "/mba-admission-guidance-2026" },
+  { label: "NRI Quota MBBS", href: "/nri-quota-engineering-admissions-2026" },
+  { label: "Education Consultant Sanjay Nagar", href: "/education-consultant-sanjay-nagar-bangalore" },
   { label: "Counselling Registration", href: "/counselling-registration" },
   { label: "Loan Assistance", href: "/loan-assistance" },
   { label: "Channel Partners", href: "/channel-partners" }
@@ -41,7 +41,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 px-4 pb-3 pt-3 sm:px-6 lg:px-10">
       <div className="rounded-2xl border border-slate-800/20 bg-[linear-gradient(90deg,#0f172a_0%,#1e293b_55%,#0b1324_100%)] px-4 py-2 text-xs text-white shadow-xl shadow-slate-900/20">
         <div className="flex flex-col items-center justify-between gap-2 sm:flex-row">
-          <p className="text-center font-medium tracking-wide text-slate-100 sm:text-left">Admissions Helpline: 91 98862 34079, 9731250001</p>
+          <p className="text-center font-medium tracking-wide text-slate-100 sm:text-left">Admissions Helpline: 91 98862 34079</p>
           <Link
             href="https://wa.me/919886234079"
             target="_blank"
