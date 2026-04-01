@@ -20,7 +20,7 @@ const requiredFields: Array<keyof ContactPayload> = [
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const resendApiKey = process.env.RESEND_API_KEY;
-const fromEmail = process.env.CONTACT_FROM_EMAIL || "Fortune Academy <noreply@fortuneacademyedu.com>";
+const fromEmail = process.env.CONTACT_FROM_EMAIL || "Fortune Academy <onboarding@resend.dev>";
 const toEmail = process.env.CONTACT_TO_EMAIL || "fortuneacademyedu@gmail.com";
 
 function normalize(payload: FormData): ContactPayload {
@@ -41,9 +41,10 @@ async function sendLeadEmail(payload: ContactPayload) {
   const resend = new Resend(resendApiKey);
   const subject = `New Lead: ${payload.name} (${payload.courseInterest})`;
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: fromEmail,
     to: [toEmail],
+    replyTo: payload.email,
     subject,
     text: [
       "New consultation lead received:",
@@ -54,6 +55,10 @@ async function sendLeadEmail(payload: ContactPayload) {
       `Message: ${payload.message}`
     ].join("\n")
   });
+
+  if (error) {
+    throw new Error(error.message || "Resend failed to deliver email.");
+  }
 }
 
 export async function POST(request: Request) {
@@ -99,7 +104,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        message: "Lead received but email delivery failed. Please check integration settings.",
+        message: "Lead received but email delivery failed. Verify RESEND_API_KEY and sender domain settings.",
         error: details
       },
       { status: 500 }
