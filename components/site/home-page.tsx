@@ -118,7 +118,7 @@ export function HomePageView({ content }: Props) {
           <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.97)_0%,rgba(255,255,255,0.9)_55%,rgba(255,255,255,0.84)_100%)]" />
 
           <div className="relative grid gap-6 px-4 py-8 sm:gap-8 sm:px-8 sm:py-10 lg:grid-cols-[1.15fr_0.85fr] lg:px-12 lg:py-14">
-            <motion.div {...riseIn}>
+            <motion.div {...riseIn} className="order-2 lg:order-1">
               <p className="inline-flex rounded-full border border-slate-300 bg-white/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700">
                 Direct Admission Experts - Bangalore
               </p>
@@ -171,7 +171,7 @@ export function HomePageView({ content }: Props) {
               </div>
             </motion.div>
 
-            <motion.div {...riseIn} className="self-start">
+            <motion.div {...riseIn} className="order-1 self-start lg:order-2">
               <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-300/30 lg:max-w-[360px]">
                 <iframe
                   title="Fortune Academy YouTube Short"
